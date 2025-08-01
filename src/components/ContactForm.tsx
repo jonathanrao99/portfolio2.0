@@ -8,12 +8,11 @@ export interface ContactFormRef {
 }
 
 const serviceOptions = [
-  "UGC",
-  "Brand Photography",
-  "Short-Form Video",
-  "Content Strategy",
-  "Identity",
-  "Account Management",
+  "Collaboration",
+  "Web Design",
+  "App Dev",
+  "Brand Revamp",
+  "AI Services",
   "Other",
 ];
 
@@ -144,13 +143,13 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
         <div className="flex flex-col lg:flex-row gap-3 w-full">
           {/* Full name */}
           <div
-            className={`flex flex-col justify-end w-full lg:w-1/3 px-6 py-4 h-28 lg:h-32 2xl:h-44 rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
+            className={`flex flex-col justify-end w-full lg:w-1/3 px-6 py-2 h-28 lg:h-32 2xl:h-44 rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
               ${errors.name ? "border-red-500" : "border-transparent"}
               `}
           >
             <label
               htmlFor="name"
-              className="text-purple-600 font-semibold text-[clamp(16px,1.2vw,24px)]"
+              className="text-purple-600 font-semibold text-[clamp(18px,1.4vw,28px)]"
             >
               Full name
             </label>
@@ -162,20 +161,20 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
                 setClientData({ ...clientData, name: e.target.value });
                 setErrors({ ...errors, name: false });
               }}
-              placeholder="Fiona Wong"
-              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(16px,1.2vw,24px)] focus:outline-none bg-transparent"
+              placeholder="Jonathan Thota"
+              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(18px,1.4vw,28px)] focus:outline-none bg-transparent"
             />
           </div>
 
           {/* Email */}
           <div
-            className={`flex flex-col justify-end w-full lg:w-1/3 px-6 py-4 h-28 lg:h-32 2xl:h-44 rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
+            className={`flex flex-col justify-end w-full lg:w-1/3 px-6 py-2 h-28 lg:h-32 2xl:h-44 rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
               ${errors.email ? "border-red-500" : "border-transparent"}
               `}
           >
             <label
               htmlFor="email"
-              className="text-purple-600 font-semibold text-[clamp(16px,1.2vw,24px)]"
+              className="text-purple-600 font-semibold text-[clamp(18px,1.4vw,28px)]"
             >
               Email
             </label>
@@ -187,20 +186,20 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
                 setClientData({ ...clientData, email: e.target.value });
                 setErrors({ ...errors, email: false });
               }}
-              placeholder="fionawong@gmail.com"
-              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(16px,1.2vw,24px)] focus:outline-none bg-transparent"
+              placeholder="jonathanrao5576@gmail.com"
+              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(18px,1.4vw,28px)] focus:outline-none bg-transparent"
             />
           </div>
 
           {/* Company */}
           <div
-            className={`flex flex-col justify-end w-full lg:w-1/3 px-6 py-4 h-28 lg:h-32 2xl:h-44 rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
+            className={`flex flex-col justify-end w-full lg:w-1/3 px-6 py-2 h-28 lg:h-32 2xl:h-44 rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
               ${errors.company ? "border-red-500" : "border-transparent"}
               `}
           >
             <label
               htmlFor="company"
-              className="text-purple-600 font-semibold text-[clamp(16px,1.2vw,24px)]"
+              className="text-purple-600 font-semibold text-[clamp(18px,1.4vw,28px)]"
             >
               Company
             </label>
@@ -212,8 +211,8 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
                 setClientData({ ...clientData, company: e.target.value });
                 setErrors({ ...errors, company: false });
               }}
-              placeholder="Fifi Vintage"
-              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(16px,1.2vw,24px)] focus:outline-none bg-transparent"
+              placeholder="The Dot Co."
+              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(18px,1.4vw,28px)] focus:outline-none bg-transparent"
             />
           </div>
         </div>
@@ -221,13 +220,13 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
         <div className="flex flex-col lg:flex-row gap-3 w-full h-full">
           {/* Message */}
           <div
-            className={`flex flex-col w-full lg:w-1/3 px-6 pt-12 lg:pt-16 pb-4 h-72 lg:h-full rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
+            className={`flex flex-col w-full lg:w-1/3 px-6 pt-6 lg:pt-8 pb-4 h-96 lg:h-full rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
               ${errors.message ? "border-red-500" : "border-transparent"}
               `}
           >
             <label
               htmlFor="message"
-              className="text-purple-600 font-semibold text-[clamp(16px,1.2vw,24px)] mb-2"
+              className="text-purple-600 font-semibold text-[clamp(18px,1.4vw,28px)] mb-2"
             >
               Project details
             </label>
@@ -238,20 +237,20 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
                 setClientData({ ...clientData, message: e.target.value });
                 setErrors({ ...errors, message: false });
               }}
-              placeholder="Tell me your goals"
-              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(16px,1.2vw,24px)] leading-tight focus:outline-none h-full resize-none bg-transparent"
+              placeholder="Tell me your goals - include file links"
+              className="text-purple-600 font-semibold placeholder:text-purple-600/40 text-[clamp(18px,1.4vw,28px)] leading-tight focus:outline-none h-full resize-none bg-transparent"
             ></textarea>
           </div>
 
           {/* Services */}
           <div
-            className={`flex flex-col w-full lg:w-1/3 px-6 pt-12 lg:pt-16 pb-6 lg:h-full rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
+            className={`flex flex-col w-full lg:w-1/3 px-6 pt-6 lg:pt-8 pb-6 lg:h-full rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
               ${errors.services ? "border-red-500" : "border-transparent"}
               `}
           >
             <label
               htmlFor="services"
-              className="text-purple-600 font-semibold text-[clamp(16px,1.2vw,24px)] mb-2 lg:mb-4 2xl:mb-6"
+              className="text-purple-600 font-semibold text-[clamp(18px,1.4vw,28px)] mb-2 lg:mb-4 2xl:mb-6"
             >
               What can I do for you?
             </label>
@@ -260,7 +259,7 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
                 <li
                   key={service}
                   onClick={() => toggleService(service)}
-                  className={`px-3.5 2xl:px-5 py-1.5 2xl:py-2 text-[clamp(14px,1vw,20px)] font-semibold rounded-full border-2 border-purple-600 cursor-pointer transition-colors duration-300 ease-in-out
+                  className={`px-3.5 2xl:px-5 py-1.5 2xl:py-2 text-[clamp(16px,1.2vw,24px)] font-semibold rounded-full border-2 border-purple-600 cursor-pointer transition-colors duration-300 ease-in-out
                     ${
                       services.includes(service)
                         ? "text-purple-100 bg-purple-600"
@@ -275,22 +274,22 @@ const ContactForm = forwardRef<ContactFormRef>((_, ref) => {
 
           {/* Budget */}
           <div
-            className={`flex flex-col w-full lg:w-1/3 px-6 pt-12 lg:pt-16 pb-6 h-96 lg:h-full rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
+            className={`flex flex-col w-full lg:w-1/3 px-6 pt-6 lg:pt-8 pb-6 h-96 lg:h-full rounded-xl lg:rounded-2xl bg-purple-50 border-3 transition-all duration-300 focus-within:border-purple-600 focus-within:shadow-lg focus-within:shadow-purple-200
               ${errors.budget ? "border-red-500" : "border-transparent"}
               `}
           >
             <label
               htmlFor="budget"
-              className="text-purple-600 font-semibold text-[clamp(16px,1.2vw,24px)] mb-2 lg:mb-4 2xl:mb-6"
+              className="text-purple-600 font-semibold text-[clamp(18px,1.4vw,28px)] mb-2 lg:mb-4 2xl:mb-6"
             >
-              Do you have a budget range?
+              Do you have a budget range? (Optional)
             </label>
             <ul className="flex flex-wrap gap-2 w-full">
               {budgetOptions.map((option) => (
                 <li
                   key={option}
                   onClick={() => selectBudget(option)}
-                  className={`px-3.5 2xl:px-5 py-1.5 2xl:py-2 text-[clamp(14px,1vw,20px)] font-semibold rounded-full border-2 border-purple-600 cursor-pointer transition-colors duration-300 ease-in-out
+                  className={`px-3.5 2xl:px-5 py-1.5 2xl:py-2 text-[clamp(16px,1.2vw,24px)] font-semibold rounded-full border-2 border-purple-600 cursor-pointer transition-colors duration-300 ease-in-out
                     ${
                       budget === option
                         ? "text-purple-100 bg-purple-600"

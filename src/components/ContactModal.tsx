@@ -52,7 +52,7 @@ export default function ContactModal() {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="text-white text-3xl lg:text-4xl 2xl:text-5xl font-bold" style={{ lineHeight: '1', marginTop: '-2px' }}>×</span>
+            <span className="text-white text-3xl lg:text-4xl 2xl:text-5xl font-bold" style={{ lineHeight: '1', marginTop: '-s2px' }}>×</span>
           </motion.button>
 
                     <div className="h-full overflow-y-auto pb-16 scrollbar-hide">
