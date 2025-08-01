@@ -41,7 +41,7 @@ export default function StickyFooter({ showOtherElements }: StickyFooterProps) {
               transition={{ duration: 1, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
               className="block font-medium text-[clamp(16px,1.2vw,20px)]"
             >
-              US Based
+              India Based
             </motion.div>
           </span>
           <span className="block overflow-hidden">

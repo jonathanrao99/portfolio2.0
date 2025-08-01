@@ -170,7 +170,7 @@ export default function Hero() {
                     delay: 0.16, // Further reduced delay
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="text-[clamp(20px,1.6vw,32px)] font-normal -mt-1 leading-[1.2] text-center md:text-left text-gray-900"
+                  className="text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
                 >
                   Building brands that scale
                 </motion.p>
