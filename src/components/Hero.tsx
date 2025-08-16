@@ -204,7 +204,7 @@ export default function Hero() {
                 delay: 0.20,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="mt-[19vh] xs:mt-[23vh] sm:mt-[12vh] md:mt-[14vw] pt-8 pb-6 -mx-4"
+              className="mt-[15vh] xs:mt-[19vh] sm:mt-[12vh] md:mt-[14vw] pt-6 md:pt-8 pb-4 md:pb-6 -mx-2 md:-mx-4"
             >
               <VideoSlider 
                 videos={PROJECT_VIDEOS}
@@ -226,7 +226,7 @@ export default function Hero() {
               delay: 0.08,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="mt-[22vh] flex justify-between items-center px-4"
+            className="mt-[18vh] md:mt-[22vh] flex justify-between items-center px-4"
           >
             {/* Left side */}
             <div className="flex items-center gap-2">
@@ -252,7 +252,7 @@ export default function Hero() {
               delay: 0.30,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="mt-[-28vh]"
+            className="mt-[-24vh] md:mt-[-28vh]"
           >
             <div className="flex justify-between items-center mb-[-20px] px-1 sm:px-2 lg:px-4">
               <motion.p 

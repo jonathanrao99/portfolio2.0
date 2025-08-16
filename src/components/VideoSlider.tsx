@@ -16,7 +16,19 @@ const ANIMATION_CONFIG = {
   CLIP_DURATION: 1.2,
   CLIP_DELAY_INITIAL: 2.6,
   CLIP_DELAY_NORMAL: 0.2,
+  THROTTLE_MS: 16, // ~60fps
+  VIDEO_PLAY_DELAY_INITIAL: 2500,
+  VIDEO_PLAY_DELAY_NORMAL: 500,
 } as const;
+
+// Responsive video dimensions
+const getVideoDimensions = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  return {
+    width: isMobile ? '320px' : '400px',
+    height: isMobile ? '180px' : '225px',
+  };
+};
 
 type VideoSliderProps = {
   videos: string[];
@@ -71,7 +83,7 @@ export function VideoSlider({ videos, className }: VideoSliderProps) {
     let timeoutId: NodeJS.Timeout;
     const throttledScroll = () => {
       clearTimeout(timeoutId);
-      timeoutId = setTimeout(handleScroll, 16); // ~60fps throttling
+      timeoutId = setTimeout(handleScroll, ANIMATION_CONFIG.THROTTLE_MS);
     };
     
     window.addEventListener('scroll', throttledScroll, { passive: true });
@@ -218,10 +230,10 @@ function VideoCard({
     if (!videoElement) return;
 
     if (isInView) {
-      const delay = isInitialLoad ? 2500 : 500;
+      const delay = isInitialLoad ? ANIMATION_CONFIG.VIDEO_PLAY_DELAY_INITIAL : ANIMATION_CONFIG.VIDEO_PLAY_DELAY_NORMAL;
       const timeoutId = setTimeout(() => {
         videoElement.play().catch(() => {
-          // Silently handle autoplay failure
+          // Silently handle autoplay failure in restricted environments
         });
       }, delay);
 
@@ -231,10 +243,13 @@ function VideoCard({
     }
   }, [isInView, isInitialLoad]);
 
+  // Responsive dimensions
+  const dimensions = useMemo(() => getVideoDimensions(), []);
+
   return (
     <div 
-      className="flex-shrink-0 mr-6" 
-      style={{ width: '400px', height: '225px' }}
+      className="flex-shrink-0 mr-4 md:mr-6" 
+      style={dimensions}
       data-video-index={dataIndex}
     >
       <motion.div 
@@ -248,7 +263,8 @@ function VideoCard({
           transformOrigin: 'center top',
           filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06))',
           backgroundColor: 'transparent',
-          overflow: 'visible', // Allow overflow
+          overflow: 'visible',
+          willChange: isCenter ? 'transform' : 'auto',
         }}
         animate={{
           scale: isCenter ? scrollScale : 1,
@@ -256,7 +272,7 @@ function VideoCard({
         }}
         transition={{
           duration: 0.3,
-          ease: [0.25, 0.46, 0.45, 0.94]
+          ease: [0.25, 0.46, 0.45, 0.94],
         }}
       >
         <motion.div
@@ -268,7 +284,7 @@ function VideoCard({
             delay: isInitialLoad ? ANIMATION_CONFIG.CLIP_DELAY_INITIAL : ANIMATION_CONFIG.CLIP_DELAY_NORMAL,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="video-preview relative w-full h-full aspect-video overflow-hidden will-change-transform rounded-video"
+          className="video-preview relative w-full h-full aspect-video overflow-hidden rounded-lg md:rounded-xl"
           style={{ 
             borderRadius: '1rem',
             border: '1px solid #e5e7eb',
