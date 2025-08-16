@@ -73,12 +73,9 @@ export function HyperText({
   useEffect(() => {
     if (!cycleWords || words.length <= 1) return;
 
-    console.log('Starting word cycling with:', words);
-
     const interval = setInterval(() => {
       setCurrentWordIndex((prev) => {
         const next = (prev + 1) % words.length;
-        console.log('Cycling to word:', words[next]);
         return next;
       });
     }, cycleDuration);
@@ -89,12 +86,10 @@ export function HyperText({
   // Update display text when current word changes and trigger animation
   useEffect(() => {
     const currentWord = words[currentWordIndex];
-    console.log('Current word:', currentWord);
     setDisplayText(currentWord.split(""));
     
     // Trigger scramble animation when word changes
     if (cycleWords && words.length > 1) {
-      console.log('Triggering animation for:', currentWord);
       setIsAnimating(true);
     }
   }, [currentWordIndex, words, cycleWords]);

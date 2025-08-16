@@ -36,13 +36,12 @@ export const saansMono = localFont({
   ],
 });
 
-export const lcddot = localFont({
-  src: [
-    {
-      path: "./fonts/lcddot.ttf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-lcddot",
-}); 
+import { Playfair_Display } from 'next/font/google';
+
+export const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: '600',
+  variable: '--font-playfair',
+});
+
+ 

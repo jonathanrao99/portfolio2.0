@@ -184,17 +184,17 @@ function Slider() {
           initial={{ x: 0 }}
           animate={{ x: "-100%" }}
           transition={{ duration: 32, ease: "linear", repeat: Infinity }}
-          className="font-lcddot text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
+          className="text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
         >
-          Data Scientist, UI/UX Designer, AI Tinkerer, Full-Stack Developer,
+          Data Scientist, UI/UX Designer, AI Tinkerer, Full-Stack Dev,
         </motion.p>
         <motion.p
           initial={{ x: 0 }}
           animate={{ x: "-100%" }}
           transition={{ duration: 32, ease: "linear", repeat: Infinity }}
-          className="font-lcddot text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
+          className="text-[10px] md:text-xs tracking-widest text-neutral-300 uppercase whitespace-nowrap pr-1.5"
         >
-          Data Scientist, UI/UX Designer, AI Tinkerer, Full-Stack Developer,
+          Data Scientist, UI/UX Designer, AI Tinkerer, Full-Stack Dev,
         </motion.p>
       </div>
     </div>
