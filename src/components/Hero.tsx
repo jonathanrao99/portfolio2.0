@@ -133,8 +133,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: HERO_ANIMATION_CONFIG.BANNER_DURATION,
-              delay: 0.02,
+              duration: 2.0,
+              delay: 0.2,
               ease: [0.22, 1, 0.36, 1],
             }}
           >
@@ -144,8 +144,8 @@ export default function Hero() {
                   initial={{ y: 80 }}
                   animate={{ y: 0 }}
                   transition={{
-                    duration: 1.2,
-                    delay: 0.08, // Further reduced delay
+                    duration: 1.8,
+                    delay: 0.2,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
@@ -159,8 +159,8 @@ export default function Hero() {
                   initial={{ y: 80, scale: 0.8 }}
                   animate={{ y: 0, scale: 1 }}
                   transition={{
-                    duration: 1.2,
-                    delay: 0.12, // Further reduced delay
+                    duration: 1.8,
+                    delay: 0.2,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="w-[clamp(28px,2vw,48px)] h-[clamp(28px,2vw,48px)] relative group"
@@ -180,8 +180,8 @@ export default function Hero() {
                   initial={{ y: 80 }}
                   animate={{ y: 0 }}
                   transition={{
-                    duration: 1.2,
-                    delay: 0.16, // Further reduced delay
+                    duration: 1.8,
+                    delay: 0.2,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
@@ -200,8 +200,8 @@ export default function Hero() {
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{
-                duration: HERO_ANIMATION_CONFIG.VIDEO_DURATION,
-                delay: 0.20,
+                duration: 2.2,
+                delay: 0.2,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="mt-[15vh] xs:mt-[19vh] sm:mt-[12vh] md:mt-[14vw] pt-6 md:pt-8 pb-4 md:pb-6 -mx-2 md:-mx-4"
@@ -222,8 +222,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 1,
-              delay: 0.08,
+              duration: 1.8,
+              delay: 0.2,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mt-[18vh] md:mt-[22vh] flex justify-between items-center px-4"
@@ -248,8 +248,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: HERO_ANIMATION_CONFIG.TEXT_DURATION,
-              delay: 0.30,
+              duration: 2.4,
+              delay: 0.2,
               ease: [0.16, 1, 0.3, 1],
             }}
             className="mt-[-24vh] md:mt-[-28vh]"
@@ -258,7 +258,7 @@ export default function Hero() {
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.40, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 className="text-xl lg:text-2xl uppercase font-semibold font-saans"
               >
                 A
@@ -266,7 +266,7 @@ export default function Hero() {
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.45, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 className="text-xl lg:text-2xl uppercase font-semibold font-saans"
               >
                 Seriously
@@ -274,7 +274,7 @@ export default function Hero() {
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.50, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 className="text-xl lg:text-2xl uppercase font-semibold font-saans"
               >
                 Good
@@ -283,8 +283,8 @@ export default function Hero() {
             
             <HyperText
               className="text-[clamp(100px,10vw,140px)] font-bold font-saans text-gray-900 leading-none mb-2 text-center w-full"
-              duration={800}
-              delay={600} // Further reduced delay
+              duration={1200}
+              delay={200}
               startOnView={false}
               animateOnHover={false}
               cycleWords={true}
