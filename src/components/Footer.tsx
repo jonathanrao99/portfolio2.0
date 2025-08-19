@@ -3,10 +3,12 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { useContactModalStore } from "@/lib/zustand/contactModalStore";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
   const containerRef = useRef<HTMLDivElement>(null);
   const toggleModal = useContactModalStore((state) => state.toggleModal);
+  const router = useRouter();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -28,19 +30,19 @@ export default function Footer() {
           Jonathan
         </motion.h2>
 
-        <a
-          href="/work"
+        <div
+          onClick={() => router.push("/work")}
           className="col-span-12 lg:col-span-8 flex items-end p-3 sm:p-4 lg:p-6 bg-neutral-300/50 backdrop-blur-sm h-[160px] sm:h-[180px] lg:h-[350px] rounded-lg lg:rounded-xl text-[clamp(14px,1.6vw,18px)] sm:text-[clamp(16px,1.4vw,24px)] font-medium leading-tight cursor-pointer hover:backdrop-blur-md transition-all duration-500"
         >
           Work
-        </a>
+        </div>
         
-        <a
-          href="/lab"
+        <div
+          onClick={() => router.push("/lab")}
           className="col-span-12 lg:col-span-4 flex items-end p-3 sm:p-4 lg:p-6 bg-neutral-300/50 backdrop-blur-sm h-[160px] sm:h-[180px] lg:h-[350px] rounded-lg lg:rounded-xl text-[clamp(14px,1.6vw,18px)] sm:text-[clamp(16px,1.4vw,24px)] font-medium leading-tight cursor-pointer hover:backdrop-blur-md transition-all duration-500"
         >
           Lab
-        </a>
+        </div>
 
         <div className="col-span-12 lg:col-span-4 grid grid-cols-2 lg:grid-rows-2 gap-2 sm:gap-3 lg:gap-4">
           <a

@@ -5,30 +5,18 @@ import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ui/ProjectCard";
 import useInitialLoad from "@/contexts/initial-load-context";
 import { InitialLoadProvider } from "@/contexts/initial-load-context";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import TopBar from "@/components/TopBar";
+import ContactModal from "@/components/ContactModal";
+import PageTransition from "@/components/PageTransition";
 
 function WorkContent() {
   const { isInitialLoad } = useInitialLoad();
 
   return (
-    <>
-      {/* Simple Top Navigation for Work Page */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: isInitialLoad ? 1 : 0.2 }}
-        className="fixed top-6 left-6 z-50"
-      >
-        <Link
-          href="/"
-          className="flex items-center gap-2 px-4 py-2 bg-neutral-900/80 backdrop-blur-md rounded-full text-white hover:bg-neutral-900 transition-all duration-300"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm font-medium">Back</span>
-        </Link>
-      </motion.div>
-
+    <PageTransition>
+      <TopBar />
+      <ContactModal />
+      
       <main className="bg-neutral-100">
         <div className="px-4 lg:px-8 pt-[200px] md:pt-[clamp(128px,12vw,500px)]">
           <div className="overflow-hidden mb-3 lg:mb-5">
@@ -63,7 +51,7 @@ function WorkContent() {
 
         <ProjectList />
       </main>
-    </>
+    </PageTransition>
   );
 }
 

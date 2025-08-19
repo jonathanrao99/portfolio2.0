@@ -6,6 +6,7 @@ import { Menu, X, Send } from "lucide-react";
 import useInitialLoad from "@/contexts/initial-load-context";
 import useOnClickOutside from "@/hooks/useOnClickOutside";
 import { useContactModalStore } from "@/lib/zustand/contactModalStore";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
   {
@@ -37,12 +38,20 @@ export default function TopBar() {
   const { isInitialLoad } = useInitialLoad();
   const isModalOpen = useContactModalStore((state) => state.isModalOpen);
   const toggleModal = useContactModalStore((state) => state.toggleModal);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useOnClickOutside(isOpen, ref as React.RefObject<HTMLElement>, () =>
     setIsOpen(false)
   );
 
   useEffect(() => {
+    // Always show TopBar on work and lab pages
+    if (pathname === '/work' || pathname === '/lab') {
+      setIsVisible(true);
+      return;
+    }
+
     const handleScroll = () => {
       // Show the bar when user scrolls below the hero section
       // This will be triggered when scrolling past the banner text and star
@@ -58,7 +67,7 @@ export default function TopBar() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <motion.div 
@@ -217,6 +226,7 @@ function NavItem({
   setIsOpen: (isOpen: boolean) => void;
 }) {
   const openModal = useContactModalStore((state) => state.openModal);
+  const router = useRouter();
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -225,14 +235,14 @@ function NavItem({
     if (title === "Get in Touch") {
       openModal();
     } else if (title === "Lab") {
-      window.location.href = "/lab";
+      router.push("/lab");
     } else if (title === "Work") {
-      window.location.href = "/work";
+      router.push("/work");
     } else if (title === "Resume") {
       window.open("/JonathanResume.pdf", "_blank");
     } else {
       // Handle other navigation items
-      window.location.href = href;
+      router.push(href);
     }
   };
 
