@@ -224,6 +224,12 @@ function NavItem({
     
     if (title === "Get in Touch") {
       openModal();
+    } else if (title === "Lab") {
+      window.location.href = "/lab";
+    } else if (title === "Work") {
+      window.location.href = "/work";
+    } else if (title === "Resume") {
+      window.open("/JonathanResume.pdf", "_blank");
     } else {
       // Handle other navigation items
       window.location.href = href;

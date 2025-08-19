@@ -44,7 +44,7 @@ export default function ContactModal() {
         animate={isModalOpen ? { y: "0%" } : { y: "110%" }}
         transition={{ duration: 1, ease: easeInOutQuart }}
         ref={modalRef as React.RefObject<HTMLDivElement>}
-                    className="fixed top-32 bottom-4 left-4 right-4 px-6 py-8 pb-20 lg:p-10 bg-stone-100 rounded-2xl lg:rounded-3xl z-998 will-change-transform overflow-y-auto scrollbar-hide"
+                    className="fixed top-32 bottom-4 left-4 right-4 px-6 py-8 pb-20 lg:p-10 bg-stone-100 rounded-2xl lg:rounded-3xl z-[9999] will-change-transform overflow-y-auto scrollbar-hide"
       >
                   <motion.button
             onClick={toggleModal}

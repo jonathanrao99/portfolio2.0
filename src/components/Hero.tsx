@@ -3,12 +3,14 @@
 import { useRef, useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
+
 import useInitialLoad from "@/contexts/initial-load-context";
 import { WordRotate } from "./WordRotate";
 import { HyperText } from "./HyperText";
 import Image from "next/image";
 import StickyFooter from "./StickyFooter";
 import { VideoSlider } from "./VideoSlider";
+import useWindowSize from "@/hooks/useWindowSize";
 
 // Animation constants for better maintainability
 const HERO_ANIMATION_CONFIG = {
@@ -35,6 +37,7 @@ export default function Hero() {
   const { isInitialLoad } = useInitialLoad();
   const [showOtherElements, setShowOtherElements] = useState(false);
   const nameAnimationRef = useRef<HTMLDivElement>(null);
+  const { height: windowHeight } = useWindowSize();
 
   const roles = useMemo(() => [
     "Data Scientist",
@@ -42,6 +45,16 @@ export default function Hero() {
     "AI Tinkerer",
     "Full-Stack Dev"
   ], []);
+
+  // Calculate scroll indicator position to be visible on screen load
+  const scrollIndicatorMargin = useMemo(() => {
+    if (!windowHeight) return 'clamp(2vh, 4vh, 6vh)';
+    // Responsive positioning based on screen height
+    if (windowHeight > 1000) return 'clamp(3vh, 4vh, 5vh)';  // Large screens
+    if (windowHeight > 800) return 'clamp(2.5vh, 3.5vh, 4.5vh)'; // Medium screens
+    if (windowHeight > 600) return 'clamp(2vh, 3vh, 4vh)';   // Small screens
+    return 'clamp(1.5vh, 2.5vh, 3.5vh)'; // Very small screens
+  }, [windowHeight]);
 
   // Optimized timing for smoother sequence
   const showOtherElementsCallback = useCallback(() => {
@@ -117,9 +130,9 @@ export default function Hero() {
                 delay: isInitialLoad ? 0.2 : 0.2,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="w-full pointer-events-none mb-6"
+              className="w-full pointer-events-none mb-4 sm:mb-6"
             >
-              <h1 className="text-[clamp(200px,15vw,120px)] font-semibold font-playfair text-gray-900 leading-none">
+              <h1 className="text-[clamp(3rem,12vw,8rem)] sm:text-[clamp(4rem,15vw,10rem)] font-semibold font-playfair text-gray-900 leading-none">
                 Jonathan Thota
               </h1>
             </motion.div>
@@ -129,7 +142,7 @@ export default function Hero() {
         {/* Banner section - only shows after Jonathan Thota animation completes */}
         {showOtherElements && (
           <motion.div 
-            className="overflow-hidden absolute left-4 right-4 xs:top-[80vh] sm:top-[70vh] md:top-[12.5vw] top-[72vh] pt-7"
+            className="overflow-hidden absolute left-2 right-2 xs:left-3 xs:right-3 sm:left-4 sm:right-4 top-[70vh] xs:top-[75vh] sm:top-[70vh] md:top-[12.5vw] pt-4 sm:pt-6 md:pt-7"
             initial={{ opacity: 0, y: 80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -148,7 +161,7 @@ export default function Hero() {
                     delay: 0.2,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
+                  className="text-[clamp(14px,3.5vw,20px)] sm:text-[clamp(16px,2.5vw,24px)] md:text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
                 >
                   Turning Data into Stories
                 </motion.p>
@@ -184,7 +197,7 @@ export default function Hero() {
                     delay: 0.2,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
+                  className="text-[clamp(14px,3.5vw,20px)] sm:text-[clamp(16px,2.5vw,24px)] md:text-[clamp(20px,1.6vw,32px)] font-semibold leading-[1.2] text-center md:text-left text-gray-900"
                 >
                   Building brands that scale
                 </motion.p>
@@ -204,7 +217,7 @@ export default function Hero() {
                 delay: 0.2,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="mt-[15vh] xs:mt-[19vh] sm:mt-[12vh] md:mt-[14vw] pt-6 md:pt-8 pb-4 md:pb-6 -mx-2 md:-mx-4"
+              className="mt-[12vh] xs:mt-[15vh] sm:mt-[12vh] md:mt-[14vw] pt-4 sm:pt-6 md:pt-8 pb-3 sm:pb-4 md:pb-6 -mx-1 sm:-mx-2 md:-mx-4"
             >
               <VideoSlider 
                 videos={PROJECT_VIDEOS}
@@ -216,33 +229,7 @@ export default function Hero() {
           </>
         )}
 
-        {/* Scroll indicators - positioned below video and close to screen height */}
-        {showOtherElements && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.8,
-              delay: 0.2,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-            className="mt-[18vh] md:mt-[22vh] flex justify-between items-center px-4"
-          >
-            {/* Left side */}
-            <div className="flex items-center gap-2">
-              <ArrowDown className="w-4 h-4 text-gray-900" />
-              <p className="text-sm font-medium font-saans">Scroll for</p>
-            </div>
-            
-            {/* Right side */}
-            <div className="flex items-center gap-2">
-              <p className="text-sm font-medium font-saans">cool sh*t</p>
-              <ArrowDown className="w-4 h-4 text-gray-900" />
-            </div>
-          </motion.div>
-        )}
-
-        {/* A Really Good text and HyperText - only shows after Jonathan Thota animation completes */}
+        {/* A Really Good text and HyperText - moved below video section */}
         {showOtherElements && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -252,14 +239,14 @@ export default function Hero() {
               delay: 0.2,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="mt-[-24vh] md:mt-[-28vh]"
+            className="mt-[6vh] sm:mt-[8vh] md:mt-[10vh]" // Adjusted margin for better spacing below video
           >
-            <div className="flex justify-between items-center mb-[-20px] px-1 sm:px-2 lg:px-4">
+            <div className="flex justify-between items-center mb-[-15px] sm:mb-[-18px] md:mb-[-20px] px-1 sm:px-2 lg:px-4">
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-xl lg:text-2xl uppercase font-semibold font-saans"
+                className="text-lg sm:text-xl lg:text-2xl uppercase font-semibold font-saans"
               >
                 A
               </motion.p>
@@ -267,7 +254,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-xl lg:text-2xl uppercase font-semibold font-saans"
+                className="text-lg sm:text-xl lg:text-2xl uppercase font-semibold font-saans"
               >
                 Seriously
               </motion.p>
@@ -275,14 +262,14 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                className="text-xl lg:text-2xl uppercase font-semibold font-saans"
+                className="text-lg sm:text-xl lg:text-2xl uppercase font-semibold font-saans"
               >
                 Good
               </motion.p>
             </div>
             
             <HyperText
-              className="text-[clamp(100px,10vw,140px)] font-bold font-saans text-gray-900 leading-none mb-2 text-center w-full"
+              className="text-[clamp(3rem,8vw,6rem)] sm:text-[clamp(4rem,10vw,8rem)] lg:text-[clamp(6rem,10vw,9rem)] font-bold font-saans text-gray-900 leading-none mb-2 text-center w-full"
               duration={1200}
               delay={200}
               startOnView={false}
@@ -292,6 +279,40 @@ export default function Hero() {
             >
               {roles}
             </HyperText>
+          </motion.div>
+        )}
+
+        {/* Scroll indicators - responsive design for all screen sizes */}
+        {showOtherElements && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1.8,
+              delay: 0.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="flex justify-between items-center px-2 xs:px-3 sm:px-4 md:px-6"
+            style={{
+              marginTop: scrollIndicatorMargin,
+              position: 'relative',
+            }}
+          >
+            {/* Left side */}
+            <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2">
+              <ArrowDown className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-gray-900" />
+              <p className="text-xs xs:text-sm sm:text-sm md:text-base font-medium font-saans">
+                Scroll for
+              </p>
+            </div>
+            
+            {/* Right side */}
+            <div className="flex items-center gap-1 xs:gap-1.5 sm:gap-2">
+              <p className="text-xs xs:text-sm sm:text-sm md:text-base font-medium font-saans">
+                cool sh*t
+              </p>
+              <ArrowDown className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-gray-900" />
+            </div>
           </motion.div>
         )}
 

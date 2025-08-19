@@ -1,130 +1,191 @@
 "use client";
 
-interface Service {
-  id: string;
+import { motion, useScroll, useTransform, useInView } from "motion/react";
+import { useRef } from "react";
+import Image from "next/image";
+import Copy from "./Copy";
+
+type Service = {
   title: string;
   description: string;
-  features: string[];
-  caseStudy?: {
-    title: string;
-    description: string;
-    result: string;
-  };
-}
+  keywords: string[];
+  image: string;
+};
 
-const services: Service[] = [
+const services = [
   {
-    id: "1",
-    title: "Web Development",
-    description: "Full-stack web applications with modern technologies and best practices",
-    features: [
-      "React, Next.js, and TypeScript",
-      "Responsive design and mobile-first approach",
-      "Performance optimization and SEO",
-      "Database design and API development",
-      "Deployment and CI/CD pipelines"
+    title: "Data Science",
+    description:
+      "Transforming raw data into actionable insights through advanced analytics, machine learning, and statistical modeling to drive informed business decisions.",
+    keywords: [
+      "Machine Learning",
+      "Statistical Analysis",
+      "Data Visualization",
+      "Predictive Modeling",
+      "Python & R",
+      "SQL Optimization",
     ],
-    caseStudy: {
-      title: "E-commerce Platform",
-      description: "Built a complete online store with payment processing and inventory management",
-      result: "Increased conversion rate by 40% and reduced load times by 60%"
-    }
+    image: "/images/other/design.png",
   },
   {
-    id: "2",
-    title: "App Development",
-    description: "Cross-platform mobile applications for iOS and Android",
-    features: [
-      "React Native and Flutter development",
-      "Native iOS and Android apps",
-      "Push notifications and offline functionality",
-      "App store optimization and deployment",
-      "Performance monitoring and analytics"
+    title: "AI Solutions",
+    description:
+      "Building intelligent systems and AI-powered applications that automate processes, enhance user experiences, and unlock new possibilities.",
+    keywords: [
+      "Neural Networks",
+      "Deep Learning",
+      "NLP Processing",
+      "Computer Vision",
+      "AI Integration",
+      "Model Deployment",
     ],
-    caseStudy: {
-      title: "Food Delivery App",
-      description: "Developed a real-time food delivery app with GPS tracking",
-      result: "Processed 10,000+ orders with 99.9% uptime"
-    }
+    image: "/images/other/engineer.png",
   },
   {
-    id: "3",
-    title: "UI/UX Design",
-    description: "User-centered design solutions that enhance user experience",
-    features: [
-      "User research and persona development",
-      "Wireframing and prototyping",
-      "Visual design and brand identity",
-      "Usability testing and iteration",
-      "Design systems and component libraries"
+    title: "Full-Stack Development",
+    description:
+      "Creating robust, scalable web applications with modern technologies, focusing on performance, user experience, and maintainable code.",
+    keywords: [
+      "React & Next.js",
+      "TypeScript",
+      "Node.js APIs",
+      "Database Design",
+      "Cloud Deployment",
+      "UI/UX Design",
     ],
-    caseStudy: {
-      title: "Banking App Redesign",
-      description: "Redesigned a banking app to improve user engagement and reduce support calls",
-      result: "Increased user satisfaction by 85% and reduced support tickets by 60%"
-    }
-  }
+    image: "/images/other/me.png",
+  },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 font-saans">
-            Services
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-saans">
-            Comprehensive solutions for your digital needs, from concept to deployment.
-          </p>
+    <section className="px-2 sm:px-3 lg:px-4 py-12 sm:py-16 lg:py-24">
+      <div className="flex flex-col gap-12 sm:gap-16 lg:gap-24 bg-neutral-900 px-3 sm:px-4 pt-12 sm:pt-16 lg:pt-24 pb-4 rounded-xl sm:rounded-2xl lg:rounded-[20px]">
+        <div className="lg:grid lg:grid-cols-12 gap-24">
+          <div className="flex flex-col col-span-12 lg:col-span-10 lg:col-start-3">
+            <Copy>
+              <h2 className="text-xs sm:text-sm lg:text-[clamp(14px,0.8vw,18px)] text-neutral-400 uppercase font-medium tracking-wider mb-2">
+                Services
+              </h2>
+            </Copy>
+            <Copy>
+              <p className="text-neutral-100 text-[clamp(20px,4vw,28px)] sm:text-[clamp(24px,3.8vw,36px)] lg:text-[clamp(24px,3.3vw,56px)] font-medium leading-[1.1] lg:leading-[1.05]">
+                Combining data science expertise with full-stack development to create intelligent solutions that transform businesses and enhance user experiences.
+              </p>
+            </Copy>
+          </div>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <div key={service.id} className="group">
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 h-full">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors font-saans">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 mb-6 font-saans">
-                  {service.description}
-                </p>
-
-                {/* Features */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-900 mb-3 font-saans">What's included:</h4>
-                  <ul className="space-y-2">
-                    {service.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-2">
-                        <span className="text-purple-600 mt-1">•</span>
-                        <span className="text-sm text-gray-600 font-saans">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Case Study */}
-                {service.caseStudy && (
-                  <div className="bg-purple-50 rounded-xl p-4">
-                    <h5 className="text-sm font-semibold text-purple-900 mb-2 font-saans">
-                      Case Study: {service.caseStudy.title}
-                    </h5>
-                    <p className="text-xs text-purple-800 mb-2 font-saans">
-                      {service.caseStudy.description}
-                    </p>
-                    <p className="text-xs font-medium text-purple-900 font-saans">
-                      Result: {service.caseStudy.result}
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+        <div className="flex flex-col bg-neutral-800 rounded-lg sm:rounded-xl lg:rounded-2xl px-3 sm:px-4 lg:px-5">
+          <ServicesList />
         </div>
       </div>
     </section>
   );
-} 
+}
+
+function ServicesList() {
+  return (
+    <ul className="flex flex-col">
+      {services.map((service, index) => (
+        <ServiceCard key={service.title} service={service} index={index} />
+      ))}
+    </ul>
+  );
+}
+
+function ServiceCard({ service, index }: { service: Service; index: number }) {
+  const keywordsRef = useRef(null);
+  const imageContainerRef = useRef(null);
+
+  const isKeywordsInView = useInView(keywordsRef, {
+    once: true,
+    margin: "0px 0px -15% 0px",
+  });
+  const isImageInView = useInView(imageContainerRef, {
+    once: true,
+    margin: "0px 0px -10% 0px",
+  });
+
+  const { scrollYProgress } = useScroll({
+    target: imageContainerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["-3vh", "3vh"]);
+
+  return (
+    <li className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-6 xl:gap-8 pt-8 sm:pt-10 last:pb-4 not-last:pb-8 sm:not-last:pb-10 lg:last:pb-10 not-last:border-b not-last:border-neutral-700">
+      <Copy>
+        <p className="text-xs sm:text-sm lg:text-[clamp(14px,0.8vw,18px)] text-neutral-300 uppercase font-medium tracking-wider mb-1 lg:col-span-2">
+          0{index + 1}
+        </p>
+      </Copy>
+
+      <Copy>
+        <h3 className="text-[clamp(20px,4vw,28px)] sm:text-[clamp(24px,3.8vw,36px)] lg:text-[clamp(24px,3.3vw,56px)] text-neutral-100 font-medium lg:col-span-4 mb-4 sm:mb-6 lg:mb-0 lg:-mt-4">
+          {service.title}
+        </h3>
+      </Copy>
+
+      <div className="flex flex-col gap-3 sm:gap-4 lg:gap-6 lg:col-span-3 mb-6 sm:mb-8 lg:mb-0">
+        <Copy>
+          <p className="text-[clamp(14px,1.5vw,16px)] sm:text-[clamp(16px,1.3vw,18px)] lg:text-[clamp(16px,1.2vw,20px)] text-neutral-100 font-medium leading-[1.3]">
+            {service.description}
+          </p>
+        </Copy>
+
+        <ul ref={keywordsRef} className="flex gap-1.5 flex-wrap">
+          {service.keywords.map((keyword, keywordIndex) => (
+            <motion.li
+              key={keyword}
+              initial={{ y: 24, opacity: 0, scale: 0.9 }}
+              animate={
+                isKeywordsInView
+                  ? { y: 0, opacity: 1, scale: 1 }
+                  : { y: 24, opacity: 0, scale: 0.9 }
+              }
+              transition={{
+                duration: 1,
+                delay: keywordIndex * 0.025,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="text-[9px] sm:text-[10px] text-neutral-100 uppercase tracking-[1.1] bg-neutral-100/10 px-2 sm:px-2.5 lg:px-3 pt-1.5 sm:pt-2 pb-1 sm:pb-1.5 rounded-md whitespace-nowrap font-mono"
+            >
+              {keyword}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+
+      <motion.div className="lg:col-span-3">
+        <div
+          ref={imageContainerRef}
+          className="h-[180px] xs:h-[220px] sm:h-[300px] md:h-[350px] lg:h-[clamp(220px,15vw,360px)] rounded-lg overflow-hidden relative"
+        >
+          <motion.div
+            className="absolute inset-0 w-full h-[120%] lg:-top-[10%]"
+            style={{ y }}
+            initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+            animate={
+              isImageInView
+                ? { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }
+                : {}
+            }
+            transition={{
+              duration: 1.6,
+              ease: [0.87, 0, 0.13, 1],
+            }}
+          >
+            <Image
+              src={service.image}
+              alt={service.title}
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+        </div>
+      </motion.div>
+    </li>
+  );
+}

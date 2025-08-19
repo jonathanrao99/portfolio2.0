@@ -44,4 +44,15 @@ export const playfairDisplay = Playfair_Display({
   variable: '--font-playfair',
 });
 
+export const lcddot = localFont({
+  src: [
+    {
+      path: "./fonts/lcddot.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-lcddot",
+});
+
  

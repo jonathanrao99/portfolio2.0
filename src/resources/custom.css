@@ -219,6 +219,21 @@ select:focus {
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Respira-Black";
+  src: url("/fonts/Respira-Black.otf") format("opentype");
+}
+
+.typeface-respira-black {
+  font-family: "Respira-Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+::selection {
+  @apply bg-[#caf182];
+}
+
 
 
 /* Hide scrollbar but allow vertical scroll */
